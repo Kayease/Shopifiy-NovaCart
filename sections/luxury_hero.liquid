@@ -1,0 +1,389 @@
+<section class="hero-carousel" id="HeroCarousel-{{ section.id }}">
+  <div class="hero-carousel__wrapper">
+    <div class="hero-carousel__slides">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'slide' %}
+            <div class="hero-slide" {{ block.shopify_attributes }}>
+              {% if block.settings.image %}
+                <div class="hero-slide__background">
+                  {{ block.settings.image | image_url: width: 3840 | image_tag: loading: 'eager', class: 'hero-slide__image' }}
+                </div>
+              {% endif %}
+              <div class="hero-slide__content">
+                <div class="hero-slide__text">
+                  {% if block.settings.label %}
+                    <div class="hero-slide__label">{{ block.settings.label }}</div>
+                  {% endif %}
+                  {% if block.settings.heading %}
+                    <h1 class="hero-slide__title">{{ block.settings.heading }}</h1>
+                  {% endif %}
+                  {% if block.settings.button_label %}
+                    <a href="{{ block.settings.button_link }}" class="hero-slide__cta">
+                      {{ block.settings.button_label }}
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+    
+    <div class="hero-carousel__controls">
+      <button class="hero-carousel__prev" aria-label="Previous slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="hero-carousel__next" aria-label="Next slide">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="hero-carousel__dots">
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          <button class="hero-carousel__dot" data-slide="{{ forloop.index0 }}"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('HeroCarousel-{{ section.id }}');
+    const slides = carousel.querySelectorAll('.hero-slide');
+    const dots = carousel.querySelectorAll('.hero-carousel__dot');
+    const prevBtn = carousel.querySelector('.hero-carousel__prev');
+    const nextBtn = carousel.querySelector('.hero-carousel__next');
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${(i - index) * 100}%)`;
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      });
+    });
+    
+    showSlide(0);
+    setInterval(nextSlide, 5000);
+  });
+</script>
+
+{% stylesheet %}
+  .hero-carousel {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .hero-carousel__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .hero-carousel__slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #f3ead5 0%, #faf8f3 100%);
+  }
+
+  .hero-slide__background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .hero-slide__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-slide__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-slide__label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+
+  .hero-slide.active .hero-slide__label {
+    opacity: 1;
+    animation: fadeInUp 1s ease 0.2s forwards;
+  }
+
+  .hero-slide__title {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+    font-family: var(--font-heading--family);
+    opacity: 0;
+  }
+
+  .hero-slide.active .hero-slide__title {
+    opacity: 1;
+    animation: fadeInUp 1s ease 0.4s forwards;
+  }
+
+  .hero-slide__title em {
+    color: #d4af37;
+    font-style: italic;
+  }
+
+  .hero-slide__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: #1a1a1a;
+    color: white;
+    padding: 18px 48px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .hero-slide.active .hero-slide__cta {
+    opacity: 1;
+    animation: fadeInUp 1s ease 0.6s forwards;
+  }
+
+  .hero-slide__cta:hover {
+    background: #d4af37;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-carousel__controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 3;
+    transform: translateY(-50%);
+  }
+
+  .hero-carousel__prev,
+  .hero-carousel__next {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-carousel__prev:hover,
+  .hero-carousel__next:hover {
+    background: #d4af37;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .hero-carousel__dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+  }
+
+  .hero-carousel__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hero-carousel__dot.active {
+    background: #d4af37;
+    transform: scale(1.2);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-slide__content {
+      padding: 0 16px;
+    }
+    
+    .hero-slide__cta {
+      padding: 16px 32px;
+      font-size: 14px;
+    }
+    
+    .hero-carousel__controls {
+      padding: 0 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Luxury Hero",
+  "tag": "section",
+  "class": "luxury-hero-section",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "NEW ARRIVALS"
+        },
+        {
+          "type": "richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "<h1>Taking the Cooler up the <em>Coast</em></h1>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Hero Carousel",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "label": "NEW ARRIVALS",
+            "heading": "<h1>Taking the Cooler up the <em>Coast</em></h1>",
+            "button_label": "SHOP NOW",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "PREMIUM COLLECTION",
+            "heading": "<h1>Luxury <em>Redefined</em></h1>",
+            "button_label": "EXPLORE",
+            "button_link": "shopify://collections/premium"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

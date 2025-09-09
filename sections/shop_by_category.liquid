@@ -1,0 +1,215 @@
+<section class="shop-by-category" id="ShopByCategory-{{ section.id }}">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Shop by Category</h2>
+      <p class="section-subtitle">Discover our curated collections</p>
+    </div>
+    
+    <div class="category-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'category' %}
+            <div class="category-card" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.link }}" class="category-link">
+                <div class="category-image">
+                  {% if block.settings.image %}
+                    {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+                  {% else %}
+                    <img src="https://via.placeholder.com/400x300/f8f8f8/666666?text={{ block.settings.title | url_encode }}" alt="{{ block.settings.title }}" loading="lazy">
+                  {% endif %}
+                </div>
+                <div class="category-info">
+                  <h3 class="category-title">{{ block.settings.title }}</h3>
+                  <p class="category-count">{{ block.settings.product_count }} items</p>
+                </div>
+              </a>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.shop-by-category {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #666666;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.category-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.category-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-image {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-image img {
+  transform: scale(1.05);
+}
+
+.category-info {
+  padding: 24px;
+  text-align: center;
+}
+
+.category-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.category-count {
+  font-size: 14px;
+  color: #666666;
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .category-info {
+    padding: 16px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category title",
+          "default": "Category Name"
+        },
+        {
+          "type": "text",
+          "id": "product_count",
+          "label": "Product count",
+          "default": "24"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category link"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Category",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Men's Clothing",
+            "product_count": "48",
+            "link": "shopify://collections/mens"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Women's Clothing",
+            "product_count": "52",
+            "link": "shopify://collections/womens"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "product_count": "24",
+            "link": "shopify://collections/accessories"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Footwear",
+            "product_count": "36",
+            "link": "shopify://collections/shoes"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

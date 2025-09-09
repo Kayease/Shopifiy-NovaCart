@@ -1,0 +1,346 @@
+/* Zest Theme Style for NovaCart */
+
+/* Global Variables */
+:root {
+  --zest-primary: #1a1a1a;
+  --zest-accent: #d4af37;
+  --zest-light: #f8f8f8;
+  --zest-white: #ffffff;
+  --zest-gray: #666666;
+  --zest-border: #e5e5e5;
+  --zest-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --zest-radius: 8px;
+  --zest-transition: all 0.3s ease;
+}
+
+/* Typography */
+.zest-heading {
+  font-family: var(--font-heading--family);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--zest-primary);
+}
+
+.zest-text {
+  font-family: var(--font-body--family);
+  line-height: 1.6;
+  color: var(--zest-gray);
+}
+
+/* Hero Section */
+.zest-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background: var(--zest-light);
+  overflow: hidden;
+}
+
+.zest-hero__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.zest-hero__text h1 {
+  font-size: clamp(36px, 5vw, 64px);
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+.zest-hero__text p {
+  font-size: 18px;
+  margin-bottom: 32px;
+  color: var(--zest-gray);
+}
+
+.zest-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--zest-primary);
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  border-radius: var(--zest-radius);
+  font-weight: 500;
+  transition: var(--zest-transition);
+}
+
+.zest-hero__cta:hover {
+  background: var(--zest-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--zest-shadow);
+}
+
+.zest-hero__image {
+  position: relative;
+  border-radius: var(--zest-radius);
+  overflow: hidden;
+  box-shadow: var(--zest-shadow);
+}
+
+.zest-hero__image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+/* Product Grid */
+.zest-products {
+  padding: 80px 0;
+  background: white;
+}
+
+.zest-products__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.zest-products__header h2 {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.zest-products__grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.zest-product-card {
+  background: white;
+  border-radius: var(--zest-radius);
+  overflow: hidden;
+  transition: var(--zest-transition);
+  border: 1px solid var(--zest-border);
+}
+
+.zest-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--zest-shadow);
+}
+
+.zest-product-card__image {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.zest-product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--zest-transition);
+}
+
+.zest-product-card:hover .zest-product-card__image img {
+  transform: scale(1.05);
+}
+
+.zest-product-card__info {
+  padding: 20px;
+}
+
+.zest-product-card__title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--zest-primary);
+}
+
+.zest-product-card__price {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--zest-accent);
+}
+
+/* Feature Section */
+.zest-features {
+  padding: 80px 0;
+  background: var(--zest-light);
+}
+
+.zest-features__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.zest-feature {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: var(--zest-radius);
+  box-shadow: var(--zest-shadow);
+}
+
+.zest-feature__icon {
+  width: 60px;
+  height: 60px;
+  background: var(--zest-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: white;
+  font-size: 24px;
+}
+
+.zest-feature h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--zest-primary);
+}
+
+.zest-feature p {
+  color: var(--zest-gray);
+  line-height: 1.6;
+}
+
+/* Collection Banner */
+.zest-collection {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--zest-primary);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.zest-collection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+}
+
+.zest-collection__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 0 24px;
+}
+
+.zest-collection h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 24px;
+  color: white;
+}
+
+.zest-collection p {
+  font-size: 18px;
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+.zest-collection__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--zest-accent);
+  color: var(--zest-primary);
+  padding: 16px 32px;
+  text-decoration: none;
+  border-radius: var(--zest-radius);
+  font-weight: 500;
+  transition: var(--zest-transition);
+}
+
+.zest-collection__cta:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* Newsletter */
+.zest-newsletter {
+  padding: 80px 0;
+  background: white;
+  text-align: center;
+}
+
+.zest-newsletter__container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.zest-newsletter h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: var(--zest-primary);
+}
+
+.zest-newsletter p {
+  font-size: 16px;
+  margin-bottom: 32px;
+  color: var(--zest-gray);
+}
+
+.zest-newsletter__form {
+  display: flex;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.zest-newsletter__input {
+  flex: 1;
+  padding: 16px;
+  border: 1px solid var(--zest-border);
+  border-radius: var(--zest-radius);
+  font-size: 16px;
+}
+
+.zest-newsletter__button {
+  background: var(--zest-primary);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: var(--zest-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--zest-transition);
+}
+
+.zest-newsletter__button:hover {
+  background: var(--zest-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .zest-hero__content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .zest-products__grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+  }
+  
+  .zest-features__container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .zest-newsletter__form {
+    flex-direction: column;
+  }
+}

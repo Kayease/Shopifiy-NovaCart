@@ -1,0 +1,318 @@
+<section class="featured-products-enhanced" id="FeaturedProducts-{{ section.id }}">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <p class="section-subtitle">Handpicked items from our latest collection</p>
+    </div>
+    
+    <div class="featured-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'product' %}
+            <div class="featured-product-card" {{ block.shopify_attributes }}>
+              <div class="product-image">
+                {% if block.settings.image %}
+                  {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  <img src="https://via.placeholder.com/500x600/f8f8f8/666666?text={{ block.settings.title | url_encode }}" alt="{{ block.settings.title }}" loading="lazy">
+                {% endif %}
+                {% if block.settings.badge %}
+                  <span class="product-badge product-badge--{{ block.settings.badge_type }}">{{ block.settings.badge }}</span>
+                {% endif %}
+                <div class="product-overlay">
+                  <button class="quick-view-btn">Quick View</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <div class="product-category">{{ block.settings.category }}</div>
+                <h3 class="product-title">{{ block.settings.title }}</h3>
+                <p class="product-description">{{ block.settings.description }}</p>
+                <div class="product-price">
+                  {% if block.settings.compare_price and block.settings.compare_price != blank %}
+                    <span class="price-compare">${{ block.settings.compare_price }}</span>
+                  {% endif %}
+                  <span class="price-current">${{ block.settings.price }}</span>
+                </div>
+                <div class="product-colors">
+                  {% if block.settings.color_1 %}
+                    <span class="color-swatch" style="background-color: {{ block.settings.color_1 }}"></span>
+                  {% endif %}
+                  {% if block.settings.color_2 %}
+                    <span class="color-swatch" style="background-color: {{ block.settings.color_2 }}"></span>
+                  {% endif %}
+                  {% if block.settings.color_3 %}
+                    <span class="color-swatch" style="background-color: {{ block.settings.color_3 }}"></span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.featured-products-enhanced {
+  padding: 80px 0;
+  background: white;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.featured-product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+.featured-product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.featured-product-card:hover .product-image img {
+  transform: scale(1.08);
+}
+
+.product-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featured-product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.quick-view-btn {
+  background: white;
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-view-btn:hover {
+  background: #d4af37;
+  color: white;
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 24px;
+}
+
+.product-category {
+  font-size: 12px;
+  color: #d4af37;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.product-price {
+  margin-bottom: 16px;
+}
+
+.price-compare {
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.price-current {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.product-colors {
+  display: flex;
+  gap: 8px;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .product-info {
+    padding: 16px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured Enhanced",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "New Arrival"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Product title",
+          "default": "Product Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Product description",
+          "default": "Brief product description"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "99.00"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Compare at price"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text"
+        },
+        {
+          "type": "select",
+          "id": "badge_type",
+          "label": "Badge type",
+          "options": [
+            {"value": "new", "label": "New"},
+            {"value": "sale", "label": "Sale"},
+            {"value": "featured", "label": "Featured"}
+          ],
+          "default": "new"
+        },
+        {
+          "type": "color",
+          "id": "color_1",
+          "label": "Color option 1"
+        },
+        {
+          "type": "color",
+          "id": "color_2",
+          "label": "Color option 2"
+        },
+        {
+          "type": "color",
+          "id": "color_3",
+          "label": "Color option 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Enhanced",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "category": "New Arrival",
+            "title": "Luxury Wool Sweater",
+            "description": "Premium merino wool blend for ultimate comfort",
+            "price": "159.99",
+            "badge": "New",
+            "badge_type": "new",
+            "color_1": "#2c3e50",
+            "color_2": "#8b4513",
+            "color_3": "#708090"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "category": "Bestseller",
+            "title": "Designer Leather Jacket",
+            "description": "Handcrafted genuine leather with modern cut",
+            "price": "299.99",
+            "compare_price": "399.99",
+            "badge": "Sale",
+            "badge_type": "sale",
+            "color_1": "#000000",
+            "color_2": "#8b4513"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

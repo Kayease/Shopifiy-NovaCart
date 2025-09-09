@@ -255,6 +255,8 @@
   type="module"
 ></script>
 
+<link rel="stylesheet" href="{{ 'header-custom.css' | asset_url }}">
+
 {% stylesheet %}
   body {
     --header-height: 0px;
@@ -378,6 +380,12 @@
 
   .header[data-sticky-state='active'] {
     view-transition-name: sticky-header;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .header[data-sticky-state='active'] .header__row {
+    background-color: #ffffff;
   }
 
   .header[data-sticky-state='idle'],

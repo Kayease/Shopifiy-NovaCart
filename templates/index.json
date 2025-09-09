@@ -1,286 +1,340 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "zest_hero": {
+      "type": "zest_hero",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "heading": {
+          "type": "heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "heading": "<h1>Discover Your <em>Style</em></h1>"
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "text": {
+          "type": "text",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "text": "<p>Premium clothing designed for the modern lifestyle. Crafted with attention to detail and sustainable materials.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "shopify://collections/all"
+          }
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+      "block_order": ["heading", "text", "button"],
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "color_scheme": "scheme-1"
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "shop_by_category": {
+      "type": "shop_by_category",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "category_1": {
+          "type": "category",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "title": "Men's Clothing",
+            "product_count": "48",
+            "link": "shopify://collections/mens"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "category_2": {
+          "type": "category",
           "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "title": "Women's Clothing",
+            "product_count": "52",
+            "link": "shopify://collections/womens"
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "product_count": "24",
+            "link": "shopify://collections/accessories"
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "title": "Footwear",
+            "product_count": "36",
+            "link": "shopify://collections/shoes"
+          }
         }
       },
-      "name": "Featured collection",
+      "block_order": ["category_1", "category_2", "category_3", "category_4"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "top_selling": {
+      "type": "top_selling_products",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "title": "Premium Cotton T-Shirt",
+            "price": "49.99",
+            "compare_price": "69.99",
+            "badge": "Bestseller",
+            "badge_type": "bestseller",
+            "rating": 5,
+            "review_count": "127"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "title": "Classic Denim Jacket",
+            "price": "129.99",
+            "badge": "Top Rated",
+            "badge_type": "bestseller",
+            "rating": 5,
+            "review_count": "89"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "title": "Comfort Fit Jeans",
+            "price": "79.99",
+            "compare_price": "99.99",
+            "badge": "Sale",
+            "badge_type": "sale",
+            "rating": 4,
+            "review_count": "156"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "title": "Casual Sneakers",
+            "price": "89.99",
+            "badge": "Popular",
+            "badge_type": "bestseller",
+            "rating": 5,
+            "review_count": "203"
+          }
+        }
+      },
+      "block_order": ["product_1", "product_2", "product_3", "product_4"],
+      "settings": {
+        "view_all_link": "/collections/all"
+      }
+    },
+    "zest_features": {
+      "type": "zest_features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Free Shipping",
+            "description": "Free shipping on orders over $100"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "↩️",
+            "title": "Easy Returns",
+            "description": "30-day return policy"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure Payment",
+            "description": "Your payment information is safe"
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "zest_collection_banner": {
+      "type": "zest_collection_banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>New Collection</h2>"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Discover our latest arrivals crafted for style and comfort</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Collection",
+            "link": "shopify://collections/new"
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "zest_newsletter": {
+      "type": "zest_newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>Stay Updated</h2>"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Subscribe to get updates on new arrivals and exclusive offers</p>"
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "placeholder": "Enter your email",
+            "button_label": "Subscribe"
+          }
+        }
+      },
+      "block_order": ["heading", "text", "form"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "promo_banner": {
+      "type": "hero",
+      "blocks": {
+        "promo_text": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Special Offer – Sale 30% OFF</h2>",
+            "type_preset": "h2",
+            "color": "#ffffff"
+          }
+        },
+        "promo_button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop the Sale",
+            "link": "shopify://collections/sale"
+          }
+        }
+      },
+      "block_order": ["promo_text", "promo_button"],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "section_width": "full-width",
+        "section_height": "medium",
+        "color_scheme": "scheme-3",
+        "toggle_overlay": true,
+        "overlay_color": "#2d5016cc",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "featured_products_enhanced": {
+      "type": "featured_enhanced",
+      "blocks": {
+        "featured_1": {
+          "type": "product",
+          "settings": {
+            "category": "New Arrival",
+            "title": "Luxury Wool Sweater",
+            "description": "Premium merino wool blend for ultimate comfort and style",
+            "price": "159.99",
+            "badge": "New",
+            "badge_type": "new",
+            "color_1": "#2c3e50",
+            "color_2": "#8b4513",
+            "color_3": "#708090"
+          }
+        },
+        "featured_2": {
+          "type": "product",
+          "settings": {
+            "category": "Bestseller",
+            "title": "Designer Leather Jacket",
+            "description": "Handcrafted genuine leather with modern cut",
+            "price": "299.99",
+            "compare_price": "399.99",
+            "badge": "Sale",
+            "badge_type": "sale",
+            "color_1": "#000000",
+            "color_2": "#8b4513"
+          }
+        },
+        "featured_3": {
+          "type": "product",
+          "settings": {
+            "category": "Premium",
+            "title": "Silk Blend Dress Shirt",
+            "description": "Elegant dress shirt perfect for any occasion",
+            "price": "89.99",
+            "badge": "Featured",
+            "badge_type": "featured",
+            "color_1": "#ffffff",
+            "color_2": "#87ceeb",
+            "color_3": "#ffc0cb"
+          }
+        }
+      },
+      "block_order": ["featured_1", "featured_2", "featured_3"]
+    },
+    "collection_grid": {
+      "type": "collection-list",
+      "settings": {
+        "layout_type": "grid",
+        "columns": 6,
+        "mobile_columns": "3",
+        "show_collection_image": true,
+        "image_ratio": "square",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "new_arrivals": {
+      "type": "product-list",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
         "max_products": 8,
         "columns": 4,
         "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
+        "columns_gap": 40,
+        "rows_gap": 40,
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
         "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "zest_hero",
+    "zest_features",
+    "shop_by_category",
+    "new_arrivals",
+    "top_selling",
+    "promo_banner",
+    "featured_products_enhanced",
+    "zest_collection_banner",
+    "collection_grid",
+    "zest_newsletter"
   ]
 }

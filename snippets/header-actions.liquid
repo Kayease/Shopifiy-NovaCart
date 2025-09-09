@@ -6,12 +6,32 @@
 
 <header-actions
   {{- block.shopify_attributes -}}
+  class="header-actions"
 >
+  <!-- Search Icon -->
+
+
+  <!-- Search Modal -->
+  {% render 'search-modal' %}
+
+  <!-- Account Icon -->
   {% if shop.customer_accounts_enabled %}
     {% render 'account-popover' %}
     {% render 'account-drawer' %}
+  {% else %}
+    <a
+      href="{{ routes.account_login_url }}"
+      class="header-actions__action header-actions__account"
+      aria-label="Account"
+    >
+      <svg class="svg-wrapper" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
   {% endif %}
 
+  <!-- Cart Icon -->
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     {% render 'cart-drawer' %}
   {% else %}
@@ -24,6 +44,8 @@
     </a>
   {% endif %}
 </header-actions>
+
+<script src="{{ 'header-search.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
   .cart-drawer {
@@ -192,6 +214,8 @@
 
   header-actions {
     display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
 
     @media screen and (max-width: 749px) {
       justify-self: flex-end;
@@ -208,16 +232,82 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: var(--padding-xs);
+    color: var(--color-foreground);
+    transition: color var(--animation-speed) var(--animation-easing);
+    text-decoration: none;
+    min-width: var(--minimum-touch-target);
+    min-height: var(--minimum-touch-target);
+  }
+
+  .header-actions__action:hover {
+    color: var(--color-primary);
   }
 
   .header-actions__action .svg-wrapper {
-    height: var(--button-size);
-    width: var(--button-size);
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .header-actions__action svg {
-    width: var(--icon-size-md);
-    height: var(--icon-size-md);
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+  }
+
+  /* Luxury utility icons */
+  .header-actions__action {
+    color: #1a1a1a;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 12px;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-actions__action::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .header-actions__action:hover {
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+  }
+
+  .header-actions__action:hover::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  .header-actions__action svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    position: relative;
+    z-index: 1;
   }
 
   .header-actions__cart-icon {

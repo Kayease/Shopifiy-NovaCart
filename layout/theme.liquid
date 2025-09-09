@@ -27,6 +27,11 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
+    
+    <!-- Luxury Homepage Styles -->
+    <link rel="stylesheet" href="{{ 'luxury-homepage.css' | asset_url }}">
+    <!-- Zest Theme Styles -->
+    <link rel="stylesheet" href="{{ 'zest-style.css' | asset_url }}">
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}

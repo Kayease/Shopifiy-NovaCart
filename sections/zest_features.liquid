@@ -1,0 +1,94 @@
+<section class="zest-features" id="ZestFeatures-{{ section.id }}">
+  <div class="zest-features__container">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'feature' %}
+          <div class="zest-feature" {{ block.shopify_attributes }}>
+            {% if block.settings.icon %}
+              <div class="zest-feature__icon">
+                {{ block.settings.icon }}
+              </div>
+            {% endif %}
+            {% if block.settings.title %}
+              <h3>{{ block.settings.title }}</h3>
+            {% endif %}
+            {% if block.settings.description %}
+              <p>{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Zest Features",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or text)",
+          "default": "🚚"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Free shipping on orders over $100"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Zest Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🚚",
+            "title": "Free Shipping",
+            "description": "Free shipping on orders over $100"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "↩️",
+            "title": "Easy Returns",
+            "description": "30-day return policy"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure Payment",
+            "description": "Your payment information is safe"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
